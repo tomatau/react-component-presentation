@@ -25,6 +25,66 @@
   <script src="lib/js/html5shiv.js"></script>
   <![endif]-->
   <style>
+  .reveal h2,
+  .reveal  h3 {
+    text-transform: uppercase;
+  }
+  .title h2,
+  .title h3 {
+    background-color: rgba(0,0,0,.75);
+  }
+  .reveal ol,
+  .reveal ul {
+    counter-reset: li;  /*Initiate a counter */
+    list-style: none;
+    font-size: 27px;
+    padding: 0;
+    margin-bottom: 4em;
+    /*text-shadow: 0 1px 0 rgba(255,255,255,.5);*/
+  }
+  .reveal ol ol,
+  .reveal ol ul {
+    margin: 0 0 0 2em; /* Add some left margin for inner lists */
+  }
+  .reveal ol span {
+      position: relative;
+      display: block;
+      padding: .2em .8em;
+      margin: .2em 0;
+      transition: all .3s ease-out;
+      text-transform: uppercase;
+  }
+  .reveal ol span:hover:before {
+      transform: rotate(360deg);
+  }
+  .reveal ol > li > span:before,
+  .reveal ul > li > span:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -1.3em;
+    top: 1.3em;
+    margin-top: -1.3em;
+    background: cornflowerblue;
+    height: 1.3em;
+    width: 1.3em;
+    line-height: 1.3em;
+    border: .1em solid #fff;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
+  }
+  .reveal ul > li > span:before {
+    color: rgb(4, 108, 4);
+    background: rgb(4, 108, 4);
+    left: -1em;
+    top: 1.6em;
+    height: .8em;
+    width: .8em;
+    line-height: .8em;
+  }
+
   .splash section img {
     border: none;
   }
@@ -47,110 +107,197 @@
   <div class="reveal">
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
-      <section data-state="splash">
-        <svg width="136px" height="28px" viewBox="0 0 136 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <g id="thinkful_logo" sketch:type="MSArtboardGroup" fill="#FFFFFF">
-            <path d="M9,20 L12,20 L12,8.02439022 L3,8.02439022 L3,3 L20,3 L20,0 L0,0 L0,11 L9,11 L9,20 L9,20 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M17,8.02439022 L17,25 L9,25 L9,28 L20,28 L20,11 L28,11 L28,0 L25,0 L25,8.02439022 L17,8.02439022 L17,8.02439022 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M38.5,11.5 L42,11.5 L42,20 L45,20 L45,11.5 L48.5,11.5 L48.5,9 L38.5,9 L38.5,12 L38.5,11.5 L38.5,11.5 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M66,9.0000004 L66.0000001,20.0000004 L69,20 L68.9999999,9 L66,9.0000004 L66,9.0000004 Z" id="Rectangle-path" sketch:type="MSShapeGroup"></path>
-            <path d="M54.9999999,13 L54.8867273,9 L52,9 L52,20 L55,20 L55,15.5 L59,15.5 L59,20 L62,20 L62,9 L59,9 L59,13 L54.9999999,13 L54.9999999,13 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M100,20 L103,20 L103,16 L108,16 L108,13.6222048 L103,13.6222048 L103,11.5 L108.5,11.5 L108.5,9 L100,9 L100,20 L100,20 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M80,15.5 L76.0307269,9 L73,9 L73,20 L76.0307269,20 L76.0307269,13.5 L80,20 L83,20 L83,9 L80,9 L80,15.5 L80,15.5 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M130,9 L127,9 L127,20 L135.5,20 L135.5,17.5 L130,17.5 L130,9 L130,9 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M93.5,9.0192589 L90,13.9999999 L90,9.0192589 L87,9.0192589 L87,20 L90,20.0000004 L90,14.9999999 L93.5,20.0000004 L97,20 L93,14.5096297 L97,9.0192589 L93.5,9.0192589 L93.5,9.0192589 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            <path d="M117.5,20.5 C120.537566,20.5 123,18 123,15 L123,9 L120,9 L120,14.5 C120,16 119.5,17.5 117.5,17.5 C115.5,17.5 115,16 115,14.5 L115,9 L112,9 L112,15 C112,18 114.462434,20.5 117.5,20.5 L117.5,20.5 Z" id="Oval-1" sketch:type="MSShapeGroup"></path>
-          </g>
-        </svg>
-        <h3>React Intensive Workshop</h3>
-        <p>
-          <small>Created by <a href="https://thinkful-students.slack.com/messages/@tomht/">Thomas `tomatao` Hudspith-Tatham</a> / <a href="mailto:tomht@thinkful.com">tomht@thinkful.com</a></small>
-        </p>
-        <img src="./img/avatar.jpeg" alt="tomatau" width="50px" height="50px">
-        <aside class="notes">
+      <section data-state="intro">
+        <section data-state="splash">
+          <svg width="136px" height="28px" viewBox="0 0 136 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="thinkful_logo" sketch:type="MSArtboardGroup" fill="#FFFFFF">
+              <path d="M9,20 L12,20 L12,8.02439022 L3,8.02439022 L3,3 L20,3 L20,0 L0,0 L0,11 L9,11 L9,20 L9,20 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M17,8.02439022 L17,25 L9,25 L9,28 L20,28 L20,11 L28,11 L28,0 L25,0 L25,8.02439022 L17,8.02439022 L17,8.02439022 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M38.5,11.5 L42,11.5 L42,20 L45,20 L45,11.5 L48.5,11.5 L48.5,9 L38.5,9 L38.5,12 L38.5,11.5 L38.5,11.5 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M66,9.0000004 L66.0000001,20.0000004 L69,20 L68.9999999,9 L66,9.0000004 L66,9.0000004 Z" id="Rectangle-path" sketch:type="MSShapeGroup"></path>
+              <path d="M54.9999999,13 L54.8867273,9 L52,9 L52,20 L55,20 L55,15.5 L59,15.5 L59,20 L62,20 L62,9 L59,9 L59,13 L54.9999999,13 L54.9999999,13 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M100,20 L103,20 L103,16 L108,16 L108,13.6222048 L103,13.6222048 L103,11.5 L108.5,11.5 L108.5,9 L100,9 L100,20 L100,20 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M80,15.5 L76.0307269,9 L73,9 L73,20 L76.0307269,20 L76.0307269,13.5 L80,20 L83,20 L83,9 L80,9 L80,15.5 L80,15.5 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M130,9 L127,9 L127,20 L135.5,20 L135.5,17.5 L130,17.5 L130,9 L130,9 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M93.5,9.0192589 L90,13.9999999 L90,9.0192589 L87,9.0192589 L87,20 L90,20.0000004 L90,14.9999999 L93.5,20.0000004 L97,20 L93,14.5096297 L97,9.0192589 L93.5,9.0192589 L93.5,9.0192589 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+              <path d="M117.5,20.5 C120.537566,20.5 123,18 123,15 L123,9 L120,9 L120,14.5 C120,16 119.5,17.5 117.5,17.5 C115.5,17.5 115,16 115,14.5 L115,9 L112,9 L112,15 C112,18 114.462434,20.5 117.5,20.5 L117.5,20.5 Z" id="Oval-1" sketch:type="MSShapeGroup"></path>
+            </g>
+          </svg>
+          <h2>React Crash Course</h2>
           <p>
-            <small>Hello, super fired up about this!</small>
+            <small>Created by
+              <a target="_blank" href="https://thinkful-students.slack.com/messages/@tomht/">
+                Thomas `tomatao` Hudspith-Tatham
+              </a> / <a target="_blank" href="mailto:tomht@thinkful.com">tomht@thinkful.com</a>
+            </small>
           </p>
-          <p>
-            <small>My name's Tom, catch me on slack = link to me on Thinkful Students and my Thinkful Email address.</small>
-          </p>
-          <p>
-            <small>Senior Backbone dev for some time - Build large apps with React and contribute to open source</small>
-          </p>
-          <p>
-            <small>Goal for this: _____</small>
-          </p>
-        </aside>
+          <svg version="1.1" width="184px" height="166px" viewBox="0 0 184 166">
+            <g transform="translate(92 83)">
+              <circle fill="#fff" r="16" />
+              <g fill="none" stroke="#fff" stroke-width="8">
+                <ellipse rx="84" ry="32" />
+                <ellipse rx="84" ry="32" transform="rotate(120)" />
+                <ellipse rx="84" ry="32" transform="rotate(60)" />
+              </g>
+            </g>
+          </svg>
+          <aside class="notes">
+            <p>
+              <small>Hello, super fired up about this!</small>
+            </p>
+            <p>
+              <small>My name's Tom, catch me on slack = link to me on Thinkful Students and my Thinkful Email address.</small>
+            </p>
+            <p>
+              <small>Senior Backbone dev for some time - Build large apps with React and contribute to open source</small>
+            </p>
+            <p>
+              <small>Goal for this: _____</small>
+            </p>
+          </aside>
+        </section>
+        <section>
+          <h2>Outline</h2>
+          <ol>
+            <li class='fragment roll-in'>
+              <span>Up and Running</span>
+              <ul>
+                <li><span>About React</span></li>
+              </ul>
+            </li>
+            <li class='fragment roll-in'>
+              <span>First component</span>
+              <ul>
+                <li><span>State and Props</span></li>
+              </ul>
+            </li>
+            <li class='fragment roll-in'>
+              <span>Forms and Data Flow</span>
+              <ul>
+                <li><span>Events and Communication</span></li>
+              </ul>
+            </li>
+            <li class='fragment roll-in'>
+              <span>Putting it together</span>
+              <ul>
+                <li><span>Reusable Components</span></li>
+              </ul>
+            </li>
+            <li class='fragment roll-in'>
+              <span>I wish someone had told me that!</span>
+              <ul>
+                <li><span>Project</span></li>
+              </ul>
+            </li>
+          </ol>
+        </section>
       </section>
       <!-- End: Intro -->
-      <section data-state="up" data-background="#2d2d2d" data-background-transition="zoom">
-        <section>
+
+
+
+
+      <section data-state="up" data-background="#0B3861" data-background-transition="zoom">
+        <section class='title' data-background-image="./img/ready.jpg">
           <h2>Up And Running</h2>
         </section>
+        <!--section class='title' data-background-image='./img/compose.jpg'>
+        </section-->
         <section>
-          <h4>Why React?</h4>
-          <ul>
-            <li>declarative views</li>
-            <li>composition</li>
-            <li>performance</li>
-          </ul>
+          <h2>Why React?</h2>
+          <ol>
+            <li class='fragment roll-in'>
+              <span>declarative views</span>
+            </li>
+            <li class='fragment roll-in'>
+              <span>compositional components</span>
+            </li>
+            <li class='fragment roll-in'>
+              <span>performance</span>
+            </li>
+          </ol>
+          <aside class="notes">
+            <p>
+              <small>Simple</small>
+              <small>Render and respond to events</small>
+              <small>Plays nice with stack (can run in node)</small>
+              <small>Works with whatever for data, routing, etc..</small>
+              <small>Components(concern) not templates(technology)</small>
+              <small>highly cohesive and loose coupling</small>
+              <small>Less state, build a VDOM and diff it, render whole thing</small>
+              <small>Minimal dom updates and batch update</small>
+            </p>
+          </aside>
         </section>
         <section>
-          <h5>Build process</h5>
-          <ul>
-            <li>JSX</li>
-            <li>ES6</li>
-          </ul>
+          <h2>Tooling</h2>
+          <aside class="notes">
+            <p>
+              <small>Concise</small>
+              <small>Easy to read with balanced close tags</small>
+              <small>Nice for designers to contribute</small>
+            </p>
+          </aside>
         </section>
-        <section>
-          <h5>JSX</h5>
-          <p>Sugar to help workflow</p>
-
-          <pre><code data-trim class="jsx">
-&lt;input disabled={isDisabled} /&gt;
-&lt;TodoList
-  onClick={handleClick}
-/&gt;
+        <section class='title' data-background-image='./img/balance.jpg'>
+          <h2>JSX</h2>
+          <pre class='fragment roll-in'><code contenteditable class="jsx">
+            &lt;input disabled={isDisabled} /&gt;
+            &lt;TodoList
+              onClick={handleClick}
+            /&gt;
+          </code></pre>
+          <span class='fragment roll-in'>or</span>
+          <pre class='fragment roll-in'><code contenteditable class="jsx">
+            React.DOM.input({ disabled: isDisabled })
+            React.createElement(TodoList, {
+              onClick: handleClick
+            });
           </code></pre>
         </section>
-
         <section>
-          <h5>ES6</h5>
-          <p>The future is coming!</p>
+          <h2>The future is coming!</h2>
 
-          <pre><code data-trim class="es6">
-let addNumbers = (a, b) => a + b;
+          <pre class='fragment roll-in'><code contenteditable class="es6">
+            let addNumbers = (a, b) => a + b;
 
-class MyClass extends AnotherClass {
-  constructor(a,b){
-    super()
-    this.totalString = `The total is ${addNumbers(a,b)}`;
-  }
-}
+            class MyClass extends AnotherClass {
+              constructor(a,b){
+                super()
+                this.totalString = `The total is ${addNumbers(a,b)}`;
+              }
+            }
           </code></pre>
         </section>
         <section>
-          <h4>How can we use this?</h4>
-          <ul>
-            <li>Gulp makes life easy
-              <ul>
-                <li>Do almost anything buildy</li>
-              </ul>
+          <h2>How can we use this?</h2>
+          <ol>
+            <li class='fragment roll-in'>
+              <span>Gulp to manage and compose tasks</span>
             </li>
-            <li>Webpack also makes life easy
-              <ul>
-                <li>Highly customisable module loader</li>
-                <li>Hot loading</li>
-              </ul>
+            <li class='fragment roll-in'>
+              <span>Webpack for modules and optimisation</span>
             </li>
-          </ul>
+          </ol>
+          <h4 class='fragment roll-in'>
+            A quick <a target="_blank" href="https://github.com/tomatau/react-webpack-setup/blob/master/gulpfile.js">walkthrough</a>
+          </h4>
         </section>
         <section>
-          <h5>5 min walkthrough of a gulpfile, running the server and making some ES6</h5>
+          <h3>Questions so far?</h3>
+          <h4 class='fragment roll-in'>Let's get everyone setup!</h4>
         </section>
         <section>
-          <h4>Questions?</h4>
-          <h4>Let's get everyone setup</h4>
+          <h3>Install NPM</h3>
+          <p>You can install <a target="_blank" href="https://gist.github.com/isaacs/579814">without sudo</a> or by using <a target="_blank" href="https://github.com/creationix/nvm">a version manager</a></p>
+          <pre><code contenteditable class="shell">
+            npm i gulp -g
+            ...
+            git clone git@github.com:tomatau/react-webpack-setup.git
+            npm install
+            gulp dev
+          </code></pre>
+          <p class='fragment roll-in'>5 min break whilst you play around with ES6</p>
         </section>
       </section>
       <!-- End: Up and Running -->
@@ -165,37 +312,37 @@ class MyClass extends AnotherClass {
         </section>
 
         <section>
-          <h4>Create class</h4>
-          <pre><code data-trim class="jsx">
-let MyComponent = React.createClass({
-  render(){
-    return (
-      <span className='hello' onClick={alert('Ciao')}>
-        Hello, world!
-      </span>
-    )
-  }
-})
+          <h3>Create class</h3>
+          <pre class='fragment roll-in'><code contenteditable class="js">
+            let MyComponent = React.createClass({
+              render(){
+                return (
+                  <span className='hello' onClick={alert('Ciao')}>
+                    Hello, world!
+                  </span>
+                )
+              }
+            })
           </code></pre>
-          <h4>Render</h4>
-          <pre><code data-trim class="jsx">
-React.render(&lt;MyComponent/&gt;, document.body)
+          <h3 class='fragment roll-in'>Render</h3>
+          <pre class='fragment roll-in'><code contenteditable class="jsx">
+            React.render(&lt;MyComponent/&gt;, document.body)
           </code></pre>
         </section>
 
         <section>
-          <h4>Composing a second component</h4>
-          <pre><code data-trim class="jsx">
-let SecondComponent = React.createClass({
-  render(){
-    return (
-      <div>
-        <input value='initial value'/>
-        &lt;MyComponent /&gt;
-      </div>
-    )
-  }
-})
+          <h3>Composition</h3>
+          <pre class='fragment roll-in'><code contenteditable class="jsx">
+            let SecondComponent = React.createClass({
+              render(){
+                return (
+                  <div>
+                    <input value='initial value'/>
+                    &lt;MyComponent /&gt;
+                  </div>
+                )
+              }
+            })
           </code></pre>
           <h5>Only one root node per component render method</h5>
           <h5>Notice the closing syntax for single nodes</h5>
@@ -205,17 +352,17 @@ let SecondComponent = React.createClass({
         <section>
           <h4>Props</h4>
 
-          <pre><code data-trim class="js">
-let Parent = React.createClass({
-  render(){
-    return (
-      &lt;Child foo={'World!'} /&gt;
-    // ...
+          <pre><code contenteditable data-trim class="js">
+            let Parent = React.createClass({
+              render(){
+                return (
+                  &lt;Child foo={'World!'} /&gt;
+                // ...
 
-let Child = React.createClass({
-  render(){
-    return <span>{this.props.foo}</span>
-    // ...
+            let Child = React.createClass({
+              render(){
+                return <span>{this.props.foo}</span>
+                // ...
           </code></pre>
           <h5>Parent gives some named data to Child</h5>
           <h5>props will update in Child when Parent updates them</h5>
@@ -226,24 +373,24 @@ let Child = React.createClass({
           <h4>State</h4>
 
           <h5>Data that needs to be changed</h5>
-          <pre><code data-trim class="js">
-let TodoApp = React.createClass({
-  getInitialState(){
-    return {
-      todos: [
-        'demonstrate state',
-        'build with forms and refs',
-        'manage lifecycles hooks',
-        'reverse the data',
-        'think react'
-      ]
-    }
-  },
-  render(){
-    return (
-      &lt;TodoHeader /&gt;
-      &lt;TodoList items={this.state.todos} /&gt;
-    // ...
+          <pre><code contenteditable class="js">
+            let TodoApp = React.createClass({
+              getInitialState(){
+                return {
+                  todos: [
+                    'demonstrate state',
+                    'build with forms and refs',
+                    'manage lifecycles hooks',
+                    'reverse the data',
+                    'think react'
+                  ]
+                }
+              },
+              render(){
+                return (
+                  &lt;TodoHeader /&gt;
+                  &lt;TodoList items={this.state.todos} /&gt;
+                // ...
           </code></pre>
           <h5>Explicit initial state being passed to children as props</h5>
         </section>
@@ -364,6 +511,7 @@ let TodoApp = React.createClass({
 
         <section>
           <ul>
+            <li>Keep them small...</li>
             <li>Too many props!! - move the state out of components and subscribe</li>
             <li>update helper</li>
             <li>immutable js</li>
