@@ -100,7 +100,7 @@
     padding: 4px;
     border-radius: 4px;
   }
-  .splash section img {
+  .reveal section img {
     border: none;
   }
   blockquote {
@@ -313,7 +313,7 @@
 
 
       <section data-state="first" data-background-transition="zoom">
-        <section>
+        <section class='title' data-background-image='./img/components.jpg'>
           <h2>First Component</h2>
         </section>
 
@@ -499,7 +499,7 @@
 
 
       <section data-state="data" data-background="#0B3861" data-background-transition="zoom">
-        <section>
+        <section class='title' data-background-image='./img/data-flow.jpg'>
           <h2>Forms &amp; Data Flow</h2>
         </section>
 
@@ -554,7 +554,7 @@
                 )
               },
               handleSubmit(event){
-                let inputValue = this.refs['my-input'].getDOMNode().value
+                let inputValue = React.findDOMNode(this.refs['my-input']).value
               }
             })
           </code></pre>
@@ -600,14 +600,14 @@
         </section>
 
         <section>
-          <h3>Property callback functions</h3>
+          <h3>Inverting Data Flow</h3>
           <pre><code contenteditable class="js">
 let ClickableList = React.createClass({
   render(){
     <ul>
       {this.props.inputs.map(input=>
         <li
-          onClick={this.props.handleClick.bind(null,input)
+          onClick={this.props.onClickItem.bind(null,input)
         >
         {input}
         </li>
@@ -623,7 +623,7 @@ let MyClickableList = React.createClass({
     return (
       <ClickableList
         inputs={listOfInputs}
-        handleClick={this.handleClickInput}
+        onClickItem={this.handleClickInput}
       />
       </ClickableList>
     )
@@ -691,7 +691,7 @@ let MyClickableList = React.createClass({
         </section>
 
         <section>
-          <h3>Possible Use Cases</h3>
+          <h3>Life-Cycle Use Cases</h3>
           <ul>
             <li class="fragment roll-in">
               <span><code class="inline">componentWillMount</code>
@@ -729,7 +729,8 @@ let MyClickableList = React.createClass({
 
 
         <section>
-          <h4>Let's all build a super simple TodoList together</h4>
+          <h4>Let's all build a super simple TodoList</h4>
+          <span>And a 20 min break</span>
         </section>
       </section>
       <!-- End: Forms and Data Flow -->
@@ -743,34 +744,167 @@ let MyClickableList = React.createClass({
 
 
       <section data-state="together" data-background-transition="zoom">
-        <section>
+        <section class='title' data-background-image='./img/compose.jpg'>
           <h2>Putting it Together</h2>
         </section>
 
 
+        <section>
+          <h3>Suggested Workflow</h3>
+          <ol>
+            <li class="fragment roll-in">
+              <span>Start with a design</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Build a component hierarchy</span>
+              <ul>
+                <li class="fragment roll-in">
+                  <span>Just the render methods</span>
+                </li>
+              </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>Minimise the state and ownership</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Invert the data flow with callbacks</span>
+            </li>
+          </ol>
+        </section>
 
         <section>
+          <img src="./img/react-sse-chat.png" height="600px">
+        </section>
+
+        <section>
+          <h3>Maximising Reuse</h3>
           <ul>
-            <li>component heirarchy</li>
-            <li>minimum state and ownership</li>
-            <li>invert data flow</li>
-            <li>component wrappers and reusable renderers</li>
-            <li>property validation for reuse and explicit</li>
-            <li>default props</li>
-            <li>mixins for reuse</li>
-            <li>ES6 class syntax</li>
-            <li>higher order components</li>
+            <li class="fragment roll-in">
+              <span>Component Wrappers</span>
+              <ul>
+                <li class="fragment roll-in">
+                  <span>Keep components small and single purpose</span>
+                </li>
+                <li class="fragment roll-in">
+                  <span>Composition</span>
+                </li>
+              </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>Explicit Property Validation</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Mixins for behaviour</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Higher Order Components</span>
+            </li>
           </ul>
         </section>
 
+        <section class='title' data-background-image='./img/reuse.jpg'>
+          <h3>Composition for Reuse</h3>
+        </section>
 
+        <section>
+          <h3>Property Validation</h3>
 
+          <pre><code contenteditable class="js">
+let ClickableList = React.createClass({
+  propTypes: {
+    onClickItem: React.PropTypes.func.isRequired,
+    inputs: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        text: React.PropTypes.node
+      })
+    )
+  },
+  getDefaultProps(){
+    return { inputs: [] }
+  },
+  render(){
+    <ul>
+      {this.props.inputs.map(input=>
+        <li
+          onClick={this.props.onClickItem.bind(null,input)
+        >
+        {input.text}
+        </li>
+      )}
+    </ul>
+  }
+});
+        </code></pre>
+        </section>
 
+        <section>
+          <h3>Mixins</h3>
+
+          <pre><code contenteditable class="js">
+let UselessMixin = {
+    componentDidMount: function () {
+      console.log("asdas");
+    }
+};
+let MyComponent = React.createClass({
+  mixins: [ UselessMixin ]
+          </code></pre>
+
+          <ul>
+            <li class="fragment roll-in">
+              <span>Add multiple behaviours to a Component</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Multiple inheritance? (modules, traits)</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Hook into life-cycle events</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class='title' data-background-image='./img/changeahead.jpg'>
+          <h2>Preparing for the future</h2>
+        </section>
 
 
         <section>
-          <h4>Questions and code!</h4>
+          <h3>Class Syntax</h3>
+          <pre><code contenteditable class="js">
+export class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: props.initialCount};
+  }
+  tick() {
+    this.setState({count: this.state.count + 1});
+  }
+  render() {
+    return (
+      <div onClick={this.tick.bind(this)}>
+        Clicks: {this.state.count}
+      </div>
+    );
+  }
+}
+Counter.propTypes = { initialCount: React.PropTypes.number };
+Counter.defaultProps = { initialCount: 0 };
+          </code></pre>
+          <ul>
+            <li class="fragment roll-in">
+              <span>Idiomatic with ES6</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>No support for Mixins and other limitations</span>
+              <ul>
+                <li class="fragment roll-in">
+                  <span><a href="https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775">Higher Order Components</a></span>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </section>
+
       </section>
       <!-- End: Putting it Together -->
 
@@ -782,29 +916,51 @@ let MyClickableList = React.createClass({
 
 
 
-      <section data-state="wish" data-background="#400040" data-background-transition="zoom">
-        <section>
-          <h2>I wish someone told me that!</h2>
+      <section data-state="wish" data-background="#0B3861" data-background-transition="zoom">
+        <section class='title' data-background-image='./img/complicated.jpg'>
+          <h2>Minimising Complexity!</h2>
         </section>
 
         <section>
-          <ul>
-            <li>Keep them small...</li>
-            <li>Too many props!! - move the state out of components and subscribe</li>
-            <li>update helper</li>
-            <li>immutable js</li>
-            <li>don't mutate props</li>
-            <li>pure render mixin (better with immutable comparisons, other gotchas with children, etc...)</li>
-            <li>refs and exposing component methods</li>
-            <li>everything should be a component</li>
-            <li>jsx components can be passed around</li>
-            <li>how does linkState work? (value and requestChange)</li>
-            <li>the future is ES6 and composition</li>
-            <li>observe syntax in 0.14</li>
-            <li>lots keeps changing</li>
-            <li>react router, react bootstrap, etc...</li>
-            <li>flux, relay, crosshairs</li>
-          </ul>
+          <h3>I wish someone had told me that</h3>
+          <ol>
+            <li class="fragment roll-in">
+              <span>Components for everything</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Smaller Components with less stats</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Don't mutate props</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Immutable JS helps performance and reasoning</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Components can be passed around</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Components can expose methods with refs</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>LinkStated mixin is very helpful for inputs</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>PureRenderMixin gets complicated with children</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>React Router / React Bootstrap / etc...</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Flux, Crosshairs, Channels, Relay</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Component observe is coming..</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Lot's keeps changing still</span>
+            </li>
+          </ol>
         </section>
 
 
@@ -813,7 +969,7 @@ let MyClickableList = React.createClass({
 
 
         <section>
-          <h4>Questions and code!</h4>
+          <h4>Project time!</h4>
         </section>
       </section>
       <!-- End: I wish! -->
