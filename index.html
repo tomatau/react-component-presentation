@@ -86,15 +86,25 @@
     width: .8em;
     line-height: .8em;
   }
-
+  .reveal ol ul > li > span:before,
+  .reveal ul ul > li > span:before {
+    background: #FF8000;
+    color: #FF8000;
+  }
+  .reveal section code {
+    max-height: 600px;
+    text-transform: none;
+  }
+  .reveal code.inline {
+    background-color: #444;
+    padding: 4px;
+    border-radius: 4px;
+  }
   .splash section img {
     border: none;
   }
   blockquote {
     color: blanchedalmond;
-  }
-  .reveal pre code {
-    max-height: 600px;
   }
   acronym {
     color: blanchedalmond;
@@ -159,36 +169,34 @@
           </aside>
         </section>
         <section>
-          <h2>Outline</h2>
+          <h2>Agenda</h2>
           <ol>
             <li class='fragment roll-in'>
               <span>Up and Running</span>
-              <ul>
-                <li><span>About React</span></li>
-              </ul>
             </li>
             <li class='fragment roll-in'>
               <span>First component</span>
               <ul>
-                <li><span>State and Props</span></li>
+                <li  class='fragment roll-in'><span>State and Props</span></li>
               </ul>
             </li>
             <li class='fragment roll-in'>
               <span>Forms and Data Flow</span>
               <ul>
-                <li><span>Events and Communication</span></li>
+                <li  class='fragment roll-in'><span>Events and Communication</span></li>
+                <li  class='fragment roll-in'><span>Component Life-cycle</span></li>
               </ul>
             </li>
             <li class='fragment roll-in'>
               <span>Putting it together</span>
               <ul>
-                <li><span>Reusable Components</span></li>
+                <li  class='fragment roll-in'><span>Reusable Components</span></li>
               </ul>
             </li>
             <li class='fragment roll-in'>
               <span>I wish someone had told me that!</span>
               <ul>
-                <li><span>Project</span></li>
+                <li  class='fragment roll-in'><span>Project</span></li>
               </ul>
             </li>
           </ol>
@@ -286,10 +294,6 @@
           </h4>
         </section>
         <section>
-          <h3>Questions so far?</h3>
-          <h4 class='fragment roll-in'>Let's get everyone setup!</h4>
-        </section>
-        <section>
           <h3>Install NPM</h3>
           <p>You can install <a target="_blank" href="https://gist.github.com/isaacs/579814">without sudo</a> or by using <a target="_blank" href="https://github.com/creationix/nvm">a version manager</a></p>
           <pre><code contenteditable class="shell">
@@ -319,11 +323,12 @@
             let MyComponent = React.createClass({
               render(){
                 return (
-                  <span className='hello' onClick={alert('Ciao')}>
+                  <span className='hello' onClick={alert(this.myProperty)}>
                     Hello, world!
                   </span>
                 )
-              }
+              },
+              myProperty: 'Ciao'
             })
           </code></pre>
           <h3 class='fragment roll-in'>Render</h3>
@@ -334,7 +339,7 @@
 
         <section>
           <h3>Composition</h3>
-          <pre class='fragment roll-in'><code contenteditable class="jsx">
+          <pre><code contenteditable class="jsx">
             let SecondComponent = React.createClass({
               render(){
                 return (
@@ -346,35 +351,56 @@
               }
             })
           </code></pre>
-          <h5>Only one root node per component render method</h5>
-          <h5>Notice the closing syntax for single nodes</h5>
-          <h5>children can be an array or object of nodes</h5>
+          <ul>
+            <li class="fragment roll-in">
+              <span>Auto closing tags</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Only one root node per component render</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>children can be an array or object of nodes</span>
+            </li>
+          </ul>
         </section>
 
         <section>
-          <h4>Props</h4>
+          <h3>Props</h3>
 
-          <pre><code contenteditable data-trim class="js">
+          <pre><code contenteditable class="js">
             let Parent = React.createClass({
               render(){
                 return (
-                  &lt;Child foo={'World!'} /&gt;
+                  &lt;Child
+                    foo={'Hello,'}
+                    bar={'World!'}
+                    other={1234}
+                  /&gt;
                 // ...
 
             let Child = React.createClass({
               render(){
-                return <span>{this.props.foo}</span>
+                let { foo, ...props } = this.props
+                return (
+                  <span>{foo} {this.props.bar}</span>
                 // ...
           </code></pre>
-          <h5>Parent gives some named data to Child</h5>
-          <h5>props will update in Child when Parent updates them</h5>
-          <h5>spread operators</h5>
+
+          <ul>
+            <li class="fragment roll-in">
+                <span>Parent gives some named data to Child</span>
+            </li>
+            <li class="fragment roll-in">
+                <span>props will update in Child when Parent updates them</span>
+            </li>
+            <li class="fragment roll-in">
+                <span>destructuring and spread operators</span>
+            </li>
+          </ul>
         </section>
 
         <section>
-          <h4>State</h4>
-
-          <h5>Data that needs to be changed</h5>
+          <h3>State</h3>
           <pre><code contenteditable class="js">
             let TodoApp = React.createClass({
               getInitialState(){
@@ -394,28 +420,73 @@
                   &lt;TodoList items={this.state.todos} /&gt;
                 // ...
           </code></pre>
-          <h5>Explicit initial state being passed to children as props</h5>
+          <ul>
+            <li>
+              <span class="fragment roll-in">Data that needs to be changed</span>
+            </li>
+            <li>
+              <span class="fragment roll-in">Explicit initial state being passed to children as props</span>
+            </li>
+          </ul>
         </section>
 
         <section>
-          <h4>Changing state</h4>
+          <h3>Changing state</h3>
+
           <ul>
-            <li>setState(state, callback) - similar to Object.assign</li>
-            <li>more sophisticated signatures in docs</li>
-            <li>React.addons.update - immutability helper</li>
-            <li>replaceState - overwrite previous state (discouraged)</li>
-            <li>setProps & replaceProps - discouraged greatly</li>
-            <li>Pure render methods</li>
-            <li>keys on lists of components</li>
-            <li>Class helpers</li>
+            <li>
+              <span class="fragment roll-in">
+                <code class='inline'>this.setState(state)</code> to make changes
+              </span>
+              <ul>
+                <li>
+                  <span class="fragment roll-in">
+                    similar to <code class="inline">Object.assign(this.state, state)</code>
+                  </span>
+                </li>
+                <li>
+                  <span class="fragment roll-in">
+                    more sophisticated signatures in docs
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                <code class="inline">React.addons.update</code> immutability helper
+              </span>
+              <ul>
+                <li>
+                  <span class="fragment roll-in">
+                    Mutate parts of deep state objects
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Pure Render methods, don't change state in render
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Array of child components each need a unique <code class="inline">key={key}</code>
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                <code class="inline">classnames(str, obj, ...)</code> module for dynamic <code class="inline">classNames </code>
+              </span>
+            </li>
           </ul>
         </section>
 
 
         <section>
-          <h4>Any Questions?</h4>
-          <h5>5 mins - Make your own Hello world component!</h5>
-          <h5>Upon returning - forms, data flow and events</h5>
+          <h3 class="fragment roll-in">Any Questions?</h3>
+          <h5 class="fragment roll-in">5 mins - Make your own Hello world component! <br>
+            <small>Upon returning - forms, data flow and events</small>
+          </h5>
         </section>
       </section>
       <!-- End: First Component -->
@@ -427,20 +498,225 @@
 
 
 
-      <section data-state="data" data-background="#004000" data-background-transition="zoom">
+      <section data-state="data" data-background="#0B3861" data-background-transition="zoom">
         <section>
           <h2>Forms &amp; Data Flow</h2>
         </section>
 
         <section>
+          <h3>Event Handlers</h3>
+          <pre class='fragment roll-in'><code contenteditable class="jsx">
+            let MyComponent = React.createClass({
+              getInitialState(){
+                return { who: 'world!', unchanged: 'I dont change' };
+              },
+              render(){
+                return (
+                  <span className='hello' onBlur={this.handleBlur}>
+                    Hello, {this.state.who}
+                  </span>
+                )
+              },
+              handleBlur(event){
+                let { who } = this.state;
+                this.setState({
+                  who: (who == 'you!') ? 'world!' : 'you!'
+                })
+              }
+            })
+          </code></pre>
           <ul>
-            <li>event handlers</li>
-            <li>refs</li>
-            <li>sending data back to parent</li>
-            <li>callbacks as props with binding</li>
-            <li>fetch from server</li>
-            <li>component did mount + other lifecycle (use cases)</li>
-            <li>optimistic updates to send to server?</li>
+            <li>
+              <span class="fragment roll-in">
+                Synthetic Event object works the same on all browsers
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                events: <code class="inline">onCopy, onKeyDown, onChange, onSubmit, onDblClick, onDragEnd, onTouchStart, onScroll, ...</code>
+              </span>
+            </li>
+          </ul>
+          <aside class="notes">
+            <small>No string around onBlur property...</small>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Component References</h3>
+          <pre class='fragment roll-in'><code contenteditable class="jsx">
+            let MyForm = React.createClass({
+              render(){
+                return (
+                  <form onSubmit={this.handleSubmit}>
+                    <input type="text" ref='my-input'>
+                  </form>
+                )
+              },
+              handleSubmit(event){
+                let inputValue = this.refs['my-input'].getDOMNode().value
+              }
+            })
+          </code></pre>
+          <ul>
+            <li>
+              <span class="fragment roll-in">
+                Selecting Components in handlers
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Can call methods on components here
+              </span>
+            </li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h3>Sending Data Back to Parent</h3>
+          <ul>
+            <li>
+              <span class="fragment roll-in">
+                Parents hold state, children trigger events
+              </span>
+              <ul>
+                <li class="fragment roll-in">
+                  <span>how to pass the data back up?</span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Use callback functions as props
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Binding methods helps a lot here
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Property callback functions</h3>
+          <pre><code contenteditable class="js">
+let ClickableList = React.createClass({
+  render(){
+    <ul>
+      {this.props.inputs.map(input=>
+        <li
+          onClick={this.props.handleClick.bind(null,input)
+        >
+        {input}
+        </li>
+      )}
+    </ul>
+  }
+});
+
+let MyClickableList = React.createClass({
+  ...
+  render(){
+    let { listOnInputs } = this.state;
+    return (
+      <ClickableList
+        inputs={listOfInputs}
+        handleClick={this.handleClickInput}
+      />
+      </ClickableList>
+    )
+  },
+  handleClickInput(event, value){
+    // do something
+  }
+})
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Fetching Data From Persistence Layer</h3>
+          <ul>
+            <li>
+              <span class="fragment roll-in">
+                No blocking methods to wait for data fetch
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Use <code class='inline'>componentDidMount</code> life-cycle method
+              </span>
+              <ul>
+                <li class="fragment roll-in">
+                  <span>Called after the Component was mounted into the DOM</span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Fetch data in here (AJAX/Socket Connection) and then <code class='inline'>setState</code>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Life-Cycle Methods</h3>
+          <ul>
+            <li>
+              <span class="fragment roll-in">
+                <code class="inline">
+                  getInitialState, componentWillMount, componentDidMount, componentWillUnmount, componentWillReceiveProps, componentWillUpdate, ...
+                </code>
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Add Behaviours and work with other libraries e.g. jQuery plugins
+              </span>
+            </li>
+            <li>
+              <span class="fragment roll-in">
+                Can have more than one of each hook per component
+              </span>
+              <ul>
+                <li class="fragment roll-in">
+                  <span>Use mixins to add multiple behaviours</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h3>Possible Use Cases</h3>
+          <ul>
+            <li class="fragment roll-in">
+              <span><code class="inline">componentWillMount</code>
+                Set some initial state depending on props</span>
+            </li>
+            <li class="fragment roll-in">
+              <span><code class="inline">componentDidMount</code>
+                Fetch data from server, add event listener</span>
+            </li>
+            <li class="fragment roll-in">
+              <span><code class="inline">componentWillUnmount</code>
+                Clean-up event listener</span>
+            </li>
+            <li class="fragment roll-in">
+              <span><code class="inline">componentWillReceiveProps</code>
+                Update state based on new props</span>
+            </li>
+            <li class="fragment roll-in">
+              <span><code class="inline">shouldComponentUpdate</code>
+                Prevent unnecessary renders</span>
+            </li>
+            <li class="fragment roll-in">
+              <span><code class="inline">componentDidUpdate</code>
+                Operate on DOM after change</span>
+            </li>
           </ul>
         </section>
 
