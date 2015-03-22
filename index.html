@@ -40,13 +40,15 @@
     font-size: 27px;
     padding: 0;
     margin-bottom: 4em;
+    margin: 0;
     /*text-shadow: 0 1px 0 rgba(255,255,255,.5);*/
   }
   .reveal ol ol,
   .reveal ol ul {
     margin: 0 0 0 2em; /* Add some left margin for inner lists */
   }
-  .reveal ol span {
+  .reveal ol span,
+  .reveal ul span {
       position: relative;
       display: block;
       padding: .2em .8em;
@@ -271,14 +273,14 @@
         </section>
         <section>
           <h2>How can we use this?</h2>
-          <ol>
+          <ul>
             <li class='fragment roll-in'>
               <span>Gulp to manage and compose tasks</span>
             </li>
             <li class='fragment roll-in'>
               <span>Webpack for modules and optimisation</span>
             </li>
-          </ol>
+          </ul>
           <h4 class='fragment roll-in'>
             A quick <a target="_blank" href="https://github.com/tomatau/react-webpack-setup/blob/master/gulpfile.js">walkthrough</a>
           </h4>
