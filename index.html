@@ -565,9 +565,9 @@
             let MyForm = React.createClass({
               render(){
                 return (
-                  <form onSubmit={this.handleSubmit}>
-                    <input type="text" ref='my-input'>
-                  </form>
+                  &lt;form onSubmit={this.handleSubmit}&gt;
+                    &lt;input type="text" ref='my-input'&gt;
+                  &lt;/form&gt;
                 )
               },
               handleSubmit(event){
@@ -656,12 +656,12 @@ let MyClickableList = React.createClass({
             </li>
             <li class="fragment roll-in">
               <span>
-                Returning an array of <code class='inline'><LI/></code> components
+                Returning an array of <code class='inline'>&lt;li/&gt;</code> components
               </span>
               <ul>
                 <li class="fragment roll-in">
                   <span>
-                    Each needs a unique key
+                    Each needs a unique key property
                   </span>
                 </li>
               </ul>
@@ -859,11 +859,11 @@ let ClickableList = React.createClass({
   render(){
     <ul>
       {this.props.inputs.map(input=>
-        <li
-          onClick={this.props.onClickItem.bind(null,input)}
-        >
+        &lt;li
+          onClick={this.props.onClickItem.bind(null, input)}
+        &gt;
         {input.text}
-        </li>
+        &lt;/li&gt;
       )}
     </ul>
   }
@@ -915,9 +915,9 @@ class Counter extends React.Component {
   }
   render() {
     return (
-      <div onClick={this.tick.bind(this)}>
+      &lt;div onClick={this.tick.bind(this)}&gt;
         Clicks: {this.state.count}
-      </div>
+      &lt;/div&gt;
     );
   }
 }
@@ -929,6 +929,9 @@ Counter.defaultProps = { initialCount: 0 };
           <ul>
             <li class="fragment roll-in">
               <span>Idiomatic with ES6</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>no method autobinding (coming soon?)</span>
             </li>
             <li class="fragment roll-in">
               <span>No support for Mixins and other limitations</span>
@@ -970,9 +973,6 @@ Counter.defaultProps = { initialCount: 0 };
               <span>Don't mutate props</span>
             </li>
             <li class="fragment roll-in">
-              <span>Immutable JS helps performance and reasoning</span>
-            </li>
-            <li class="fragment roll-in">
               <span>Components can be passed around</span>
             </li>
             <li class="fragment roll-in">
@@ -982,7 +982,13 @@ Counter.defaultProps = { initialCount: 0 };
               <span>LinkStated mixin is very helpful for inputs</span>
             </li>
             <li class="fragment roll-in">
+              <span>ClassList is deprecated for classnames, both good</span>
+            </li>
+            <li class="fragment roll-in">
               <span>PureRenderMixin gets complicated with children</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Immutable JS helps performance and reasoning</span>
             </li>
             <li class="fragment roll-in">
               <span>React Router / React Bootstrap / etc...</span>
@@ -1005,10 +1011,10 @@ Counter.defaultProps = { initialCount: 0 };
 
 
         <section>
-          <h4>Project time!</h4>
-          <h5>TBA</h5>
+          <h3>Project time!</h3>
+          <h5>TBC...</h5>
           <a href="https://github.com/tomatau/echo-suggest">echo-suggest</a>
-          <p>Build a music suggestion app with the <a href="http://developer.echonest.com">http://developer.echonest.com</a> API</p>
+          <p>Build a music suggestion app with the <a href="http://developer.echonest.com">http://developer.echonest.com</a> API - spec coming soon...</p>
         </section>
       </section>
       <!-- End: I wish! -->
