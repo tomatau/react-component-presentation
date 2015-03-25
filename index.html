@@ -628,8 +628,8 @@ let ClickableList = React.createClass({
     let { inputs, onClickItem } = this.props;
     return (
       <ul>
-        {inputs.map(input=>
-          &lt;li onClick={onClickItem.bind(null, input)}&gt;
+        {inputs.map((input,i)=>
+          &lt;li key={i} onClick={onClickItem.bind(null, input)}&gt;
           {input}
           &lt;/li&gt;
         )}
@@ -651,10 +651,22 @@ let MyClickableList = React.createClass({
   }
           </code></pre>
           <ul>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Using bind with null when child binds
               </span>
+            </li>
+            <li class="fragment roll-in">
+              <span>
+                Returning an array of <code class='inline'><LI/></code> components
+              </span>
+              <ul>
+                <li class="fragment roll-in">
+                  <span>
+                    Each needs a unique key
+                  </span>
+                </li>
+              </ul>
             </li>
           </ul>
         </section>
