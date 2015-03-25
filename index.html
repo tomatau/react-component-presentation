@@ -153,6 +153,9 @@
               </g>
             </g>
           </svg>
+
+
+
           <aside class="notes">
             <p>
               <small>Hello, super fired up about this!</small>
@@ -167,6 +170,9 @@
               <small>Goal for this: _____</small>
             </p>
           </aside>
+
+
+
         </section>
         <section>
           <h2>Agenda</h2>
@@ -226,43 +232,50 @@
               <span>performance</span>
             </li>
           </ol>
+
+
           <aside class="notes">
             <p>
-              <small>Simple</small>
-              <small>Render and respond to events</small>
+              <small>Declare how it should look - like CSS, less managing</small>
+            </p>
+            <p>
+              <small>Simple - Render and respond to events</small>
+            </p>
+            <p>
               <small>Plays nice with stack (can run in node)</small>
-              <small>Works with whatever for data, routing, etc..</small>
+            </p>
+            <p>
               <small>Components(concern) not templates(technology)</small>
+            </p>
+            <p>
               <small>highly cohesive and loose coupling</small>
-              <small>Less state, build a VDOM and diff it, render whole thing</small>
+            </p>
+            <p>
               <small>Minimal dom updates and batch update</small>
             </p>
           </aside>
+
+
+
         </section>
         <section>
           <h2>Tooling</h2>
-          <aside class="notes">
-            <p>
-              <small>Concise</small>
-              <small>Easy to read with balanced close tags</small>
-              <small>Nice for designers to contribute</small>
-            </p>
-          </aside>
         </section>
         <section class='title' data-background-image='./img/balance.jpg'>
           <h2>JSX</h2>
-          <pre class='fragment roll-in'><code contenteditable class="jsx">
-            &lt;input disabled={isDisabled} /&gt;
-            &lt;TodoList
-              onClick={handleClick}
-            /&gt;
-          </code></pre>
-          <span class='fragment roll-in'>or</span>
+          <h3 class='fragment roll-in'>Sugar for JavaScript</h3>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
             React.DOM.input({ disabled: isDisabled })
             React.createElement(TodoList, {
               onClick: handleClick
             });
+          </code></pre>
+          <span class='fragment roll-in'>Normal JS, or...</span>
+          <pre class='fragment roll-in'><code contenteditable class="jsx">
+            &lt;input disabled={isDisabled} /&gt;
+            &lt;TodoList
+              onClick={handleClick}
+            /&gt;
           </code></pre>
         </section>
         <section>
@@ -283,25 +296,26 @@
           <h2>How can we use this?</h2>
           <ul>
             <li class='fragment roll-in'>
-              <span>Gulp to manage and compose tasks</span>
+              <span>Webpack for modules and optimisation</span>
             </li>
             <li class='fragment roll-in'>
-              <span>Webpack for modules and optimisation</span>
+              <span>Gulp to manage and compose tasks</span>
             </li>
           </ul>
           <h4 class='fragment roll-in'>
-            A quick <a target="_blank" href="https://github.com/tomatau/react-webpack-setup/blob/master/gulpfile.js">walkthrough</a>
+            A quick <a target="_blank" href="https://github.com/tomatau/react-webpack-setup/blob/master/gulpfile.js">gulp & webpack walkthrough</a>
           </h4>
         </section>
         <section>
           <h3>Install NPM</h3>
           <p>You can install <a target="_blank" href="https://gist.github.com/isaacs/579814">without sudo</a> or by using <a target="_blank" href="https://github.com/creationix/nvm">a version manager</a></p>
           <pre><code contenteditable class="shell">
-            npm i gulp bower -g
-            ...
-            git clone git@github.com:tomatau/react-webpack-setup.git
-            npm install
-            gulp dev
+  npm i gulp bower -g
+  ...
+  git clone git@github.com:tomatau/react-webpack-setup.git && cd react-webpack-setup
+  npm install
+  bower install
+  gulp dev
           </code></pre>
           <p class='fragment roll-in'>5 min break whilst you play around with ES6</p>
         </section>
@@ -320,20 +334,24 @@
         <section>
           <h3>Create class</h3>
           <pre class='fragment roll-in'><code contenteditable class="js">
-            let MyComponent = React.createClass({
+            let HelloWorld = React.createClass({
               render(){
-                return (
-                  <span className='hello' onClick={alert(this.myProperty)}>
-                    Hello, world!
-                  </span>
-                )
-              },
-              myProperty: 'Ciao'
+                return <span>Hello, world!</span>;
+              }
             })
           </code></pre>
-          <h3 class='fragment roll-in'>Render</h3>
+          <ul>
+            <li class="fragment roll-in">
+              <span>Render method</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Return some JSX</span>
+            </li>
+          </ul>
+          <h4 class='fragment roll-in'>Let's try it!</h4>
+          <h3 class='fragment roll-in'>Render into Dom</h3>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
-            React.render(&lt;MyComponent/&gt;, document.body)
+            React.render(&lt;HelloWorld/&gt;, document.body)
           </code></pre>
         </section>
 
@@ -344,8 +362,8 @@
               render(){
                 return (
                   <div>
-                    <input value='initial value'/>
-                    &lt;MyComponent /&gt;
+                    &lt;input value='initial value' /&gt;
+                    &lt;HelloWorld /&gt;
                   </div>
                 )
               }
@@ -357,9 +375,6 @@
             </li>
             <li class="fragment roll-in">
               <span>Only one root node per component render</span>
-            </li>
-            <li class="fragment roll-in">
-              <span>children can be an array or object of nodes</span>
             </li>
           </ul>
         </section>
@@ -376,25 +391,24 @@
                     bar={'World!'}
                     other={1234}
                   /&gt;
-                // ...
+            ...
 
             let Child = React.createClass({
               render(){
-                let { foo, ...props } = this.props
+                let { foo, other } = this.props
                 return (
-                  <span>{foo} {this.props.bar}</span>
-                // ...
+                  <span>{foo} {other} {this.props.bar}</span>
           </code></pre>
 
           <ul>
             <li class="fragment roll-in">
-                <span>Parent gives some named data to Child</span>
+              <span>Parent gives some named data to Child</span>
             </li>
             <li class="fragment roll-in">
-                <span>props will update in Child when Parent updates them</span>
+              <span>props will update in Child when Parent updates them</span>
             </li>
             <li class="fragment roll-in">
-                <span>destructuring and spread operators</span>
+              <span>destructuring to extract a properties</span>
             </li>
           </ul>
         </section>
@@ -446,6 +460,11 @@
                 </li>
                 <li>
                   <span class="fragment roll-in">
+                    updates the dom efficiently on changes
+                  </span>
+                </li>
+                <li>
+                  <span class="fragment roll-in">
                     more sophisticated signatures in docs
                   </span>
                 </li>
@@ -453,9 +472,19 @@
             </li>
             <li>
               <span class="fragment roll-in">
-                <code class="inline">React.addons.update</code> immutability helper
+                What about state with objects containing objects, etc...?
               </span>
               <ul>
+                <li>
+                  <span class="fragment roll-in">
+                    <code class="inline">React.addons.update</code> immutability helper
+                  </span>
+                </li>
+                <li>
+                  <span class="fragment roll-in">
+                    Available in <code class='inline'>React/addons</code>
+                  </span>
+                </li>
                 <li>
                   <span class="fragment roll-in">
                     Mutate parts of deep state objects
@@ -465,17 +494,7 @@
             </li>
             <li>
               <span class="fragment roll-in">
-                Pure Render methods, don't change state in render
-              </span>
-            </li>
-            <li>
-              <span class="fragment roll-in">
-                Array of child components each need a unique <code class="inline">key={key}</code>
-              </span>
-            </li>
-            <li>
-              <span class="fragment roll-in">
-                <code class="inline">classnames(str, obj, ...)</code> module for dynamic <code class="inline">classNames </code>
+                Pure Render methods please... don't change state in render
               </span>
             </li>
           </ul>
@@ -484,8 +503,8 @@
 
         <section>
           <h3>Any Questions?</h3>
-          <h5 class="fragment roll-in">5 mins - Make your own Hello world component! <br>
-            <small>Upon returning - forms, data flow and events</small>
+          <h5 class="fragment roll-in">Let's a Hello world component!<br>
+            <small>5 mins break - Upon returning - forms, data flow and events</small>
           </h5>
         </section>
       </section>
@@ -512,12 +531,12 @@
               },
               render(){
                 return (
-                  <span className='hello' onBlur={this.handleBlur}>
+                  <span className='hello' onClic={this.handleClick}>
                     Hello, {this.state.who}
                   </span>
                 )
               },
-              handleBlur(event){
+              handleClick(event){
                 let { who } = this.state;
                 this.setState({
                   who: (who == 'you!') ? 'world!' : 'you!'
@@ -607,7 +626,7 @@ let ClickableList = React.createClass({
     <ul>
       {this.props.inputs.map(input=>
         <li
-          onClick={this.props.onClickItem.bind(null,input)
+          onClick={this.props.onClickItem.bind(null, input)}
         >
         {input}
         </li>
@@ -628,7 +647,7 @@ let MyClickableList = React.createClass({
       </ClickableList>
     )
   },
-  handleClickInput(event, value){
+  handleClickInput(input, event){
     // do something
   }
 })
@@ -826,7 +845,7 @@ let ClickableList = React.createClass({
     <ul>
       {this.props.inputs.map(input=>
         <li
-          onClick={this.props.onClickItem.bind(null,input)
+          onClick={this.props.onClickItem.bind(null,input)}
         >
         {input.text}
         </li>
