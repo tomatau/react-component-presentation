@@ -183,26 +183,26 @@
             <li class='fragment roll-in'>
               <span>First component</span>
               <ul>
-                <li  class='fragment roll-in'><span>State and Props</span></li>
+                <li class='fragment roll-in'><span>State and Props</span></li>
               </ul>
             </li>
             <li class='fragment roll-in'>
               <span>Forms and Data Flow</span>
               <ul>
-                <li  class='fragment roll-in'><span>Events and Communication</span></li>
-                <li  class='fragment roll-in'><span>Component Life-cycle</span></li>
+                <li class='fragment roll-in'><span>Events and Communication</span></li>
+                <li class='fragment roll-in'><span>Component Life-cycle</span></li>
               </ul>
             </li>
             <li class='fragment roll-in'>
               <span>Putting it together</span>
               <ul>
-                <li  class='fragment roll-in'><span>Reusable Components</span></li>
+                <li class='fragment roll-in'><span>Reusable Components</span></li>
               </ul>
             </li>
             <li class='fragment roll-in'>
               <span>I wish someone had told me that!</span>
               <ul>
-                <li  class='fragment roll-in'><span>Project</span></li>
+                <li class='fragment roll-in'><span>Project</span></li>
               </ul>
             </li>
           </ol>
@@ -448,52 +448,52 @@
           <h3>Changing state</h3>
 
           <ul>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 <code class='inline'>this.setState(state)</code> to make changes
               </span>
               <ul>
-                <li>
-                  <span class="fragment roll-in">
+                <li class="fragment roll-in">
+                  <span>
                     similar to <code class="inline">Object.assign(this.state, state)</code>
                   </span>
                 </li>
-                <li>
-                  <span class="fragment roll-in">
+                <li class="fragment roll-in">
+                  <span>
                     updates the dom efficiently on changes
                   </span>
                 </li>
-                <li>
-                  <span class="fragment roll-in">
+                <li class="fragment roll-in">
+                  <span>
                     more sophisticated signatures in docs
                   </span>
                 </li>
               </ul>
             </li>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 What about state with objects containing objects, etc...?
               </span>
               <ul>
-                <li>
-                  <span class="fragment roll-in">
+                <li class="fragment roll-in">
+                  <span>
                     <code class="inline">React.addons.update</code> immutability helper
                   </span>
                 </li>
-                <li>
-                  <span class="fragment roll-in">
+                <li class="fragment roll-in">
+                  <span>
                     Available in <code class='inline'>React/addons</code>
                   </span>
                 </li>
-                <li>
-                  <span class="fragment roll-in">
+                <li class="fragment roll-in">
+                  <span>
                     Mutate parts of deep state objects
                   </span>
                 </li>
               </ul>
             </li>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Pure Render methods please... don't change state in render
               </span>
             </li>
@@ -503,8 +503,8 @@
 
         <section>
           <h3>Any Questions?</h3>
-          <h5 class="fragment roll-in">Let's a Hello world component!<br>
-            <small>5 mins break - Upon returning - forms, data flow and events</small>
+          <h5 class="fragment roll-in">Let's make a Hello world component!<br>
+            <small>then a 5 mins break, upon returning: forms, data flow and events</small>
           </h5>
         </section>
       </section>
@@ -531,7 +531,7 @@
               },
               render(){
                 return (
-                  <span className='hello' onClic={this.handleClick}>
+                  <span className='hello' onClicK={this.handleClick}>
                     Hello, {this.state.who}
                   </span>
                 )
@@ -573,14 +573,16 @@
                 )
               },
               handleSubmit(event){
-                let inputValue = React.findDOMNode(this.refs['my-input']).value
+                event.preventDefault()
+                let myInputRef = this.refs['my-input'];
+                let inputValue = React.findDOMNode(myInputRef).value
               }
             })
           </code></pre>
           <ul>
             <li>
               <span class="fragment roll-in">
-                Selecting Components in handlers
+                Selecting Components in methods
               </span>
             </li>
             <li>
@@ -623,35 +625,38 @@
           <pre><code contenteditable class="js">
 let ClickableList = React.createClass({
   render(){
-    <ul>
-      {this.props.inputs.map(input=>
-        <li
-          onClick={this.props.onClickItem.bind(null, input)}
-        >
-        {input}
-        </li>
-      )}
-    </ul>
-  }
-});
+    let { inputs, onClickItem } = this.props;
+    return (
+      <ul>
+        {inputs.map(input=>
+          &lt;li onClick={onClickItem.bind(null, input)}&gt;
+          {input}
+          &lt;/li&gt;
+        )}
+      </ul>
 
 let MyClickableList = React.createClass({
   ...
   render(){
     let { listOnInputs } = this.state;
     return (
-      <ClickableList
+      &lt;ClickableList
         inputs={listOfInputs}
         onClickItem={this.handleClickInput}
-      />
-      </ClickableList>
+      /&gt;
     )
   },
   handleClickInput(input, event){
     // do something
   }
-})
           </code></pre>
+          <ul>
+            <li>
+              <span class="fragment roll-in">
+                Using bind with null when child binds
+              </span>
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -674,7 +679,7 @@ let MyClickableList = React.createClass({
             </li>
             <li>
               <span class="fragment roll-in">
-                Fetch data in here (AJAX/Socket Connection) and then <code class='inline'>setState</code>
+                Fetch data in here (AJAX/Socket) and then <code class='inline'>setState</code>
               </span>
             </li>
           </ul>
@@ -748,8 +753,8 @@ let MyClickableList = React.createClass({
 
 
         <section>
+          <span>A 20 min break, then...</span>
           <h4>Let's all build a super simple TodoList</h4>
-          <span>And a 20 min break</span>
         </section>
       </section>
       <!-- End: Forms and Data Flow -->
@@ -890,7 +895,7 @@ let MyComponent = React.createClass({
         <section>
           <h3>Class Syntax</h3>
           <pre><code contenteditable class="js">
-export class Counter extends React.Component {
+class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {count: props.initialCount};
@@ -906,6 +911,8 @@ export class Counter extends React.Component {
     );
   }
 }
+// static property initialisers only available in playground babel
+// so for now... add to class function
 Counter.propTypes = { initialCount: React.PropTypes.number };
 Counter.defaultProps = { initialCount: 0 };
           </code></pre>
