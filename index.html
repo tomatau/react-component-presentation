@@ -270,14 +270,33 @@
               onClick: handleClick
             });
           </code></pre>
-          <span class='fragment roll-in'>Normal JS, or...</span>
+          <span class='fragment roll-in' style='color: rgb(4, 108, 4);'>Normal JS, or...</span>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
             &lt;input disabled={isDisabled} /&gt;
             &lt;TodoList
               onClick={handleClick}
             /&gt;
           </code></pre>
+
+
+
+          <aside class="notes">
+            <p>
+              <small>Write HTML inside JavaScript</small>
+            </p>
+            <p>
+              <small>Compiles to JavaScript</small>
+            </p>
+            <p>
+              <small>Easier for designers and backenders to join in randomly</small>
+            </p>
+            <p>
+              <small>Technologies are not concerns</small>
+            </p>
+          </aside>
+
         </section>
+
         <section>
           <h2>The future is coming!</h2>
 
@@ -291,7 +310,17 @@
               }
             }
           </code></pre>
+
+
+
+          <aside class="notes">
+            <p>
+              <small>JSX supports some natively, the rest is helpful</small>
+            </p>
+          </aside>
+
         </section>
+
         <section>
           <h2>How can we use this?</h2>
           <ul>
@@ -318,7 +347,26 @@
   gulp dev
           </code></pre>
           <p class='fragment roll-in'>5 min break whilst you play around with ES6 <br>
-          <em>Teaser</em> Please <a target="_blank" href="https://developer.echonest.com/account/register">Sign up</a> for an echo nest API key</p>
+          <em>Teaser:</em> Please <a target="_blank" href="https://developer.echonest.com/account/register">Sign up</a> for an echo nest API key</p>
+
+
+
+
+
+
+          <aside class="notes">
+            <p>
+              <small>Gulp manages more complex builds</small>
+            </p>
+            <p>
+              <small>Testing scripts</small>
+            </p>
+            <p>
+              <small>Webpack can work stand alone -- get's a bit grunty and complex with plugins and alias'</small>
+            </p>
+          </aside>
+
+
         </section>
       </section>
       <!-- End: Up and Running -->
@@ -349,11 +397,12 @@
               <span>Return some JSX</span>
             </li>
           </ul>
-          <h4 class='fragment roll-in'>Let's try it!</h4>
+          <h4 class='fragment roll-in'>Let's <a href="https://gist.github.com/tomatau/220a63ddca9acea067bb" target="_blank">try</a> it!</h4>
           <h3 class='fragment roll-in'>Render into Dom</h3>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
             React.render(&lt;HelloWorld/&gt;, document.body)
           </code></pre>
+
         </section>
 
         <section>
@@ -378,6 +427,12 @@
               <span>Only one root node per component render</span>
             </li>
           </ul>
+
+          <aside class="notes">
+            <p>
+              <small>Return JSX - again - yep - html inside JS</small>
+            </p>
+          </aside>
         </section>
 
         <section>
@@ -412,6 +467,14 @@
               <span>destructuring to extract a properties</span>
             </li>
           </ul>
+          <aside class="notes">
+            <p>
+              <small>Destructuring is an ES6 feature</small>
+            </p>
+            <p>
+              <small>Props is a JSX feature - compiles to object param in function call</small>
+            </p>
+          </aside>
         </section>
 
         <section>
@@ -443,6 +506,15 @@
               <span class="fragment roll-in">Explicit initial state being passed to children as props</span>
             </li>
           </ul>
+
+          <aside class="notes">
+            <p>
+              <small>Called once when initialised, returns the state object</small>
+            </p>
+            <p>
+              <small>Can anyone see the problem here?? :)</small>
+            </p>
+          </aside>
         </section>
 
         <section>
@@ -522,7 +594,11 @@
         </section>
 
         <section>
-          <h3>Event Handlers</h3>
+          <h3>
+            <a href="https://gist.github.com/tomatau/ba1e034e6b3b11aed41c" targer='_blank'>
+              Event Handlers
+            </a>
+          </h3>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
             let MyComponent = React.createClass({
               getInitialState(){
@@ -555,13 +631,23 @@
               </span>
             </li>
           </ul>
+
           <aside class="notes">
-            <small>No string around onBlur property...</small>
+            <p>
+              <small>Camel cased className (class is reserved word), htmlFor on labels</small>
+            </p>
+            <p>
+              <small>Events are dealt with nicer than native.. e,g, drag events</small>
+            </p>
           </aside>
         </section>
 
         <section>
-          <h3>Component References</h3>
+          <h3>
+            <a href="https://gist.github.com/tomatau/1f32c147bb95be27fae0" target="_blank">
+              Component References
+            </a>
+          </h3>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
             let MyForm = React.createClass({
               render(){
@@ -590,7 +676,6 @@
               </span>
             </li>
           </ul>
-
         </section>
 
         <section>
@@ -620,7 +705,11 @@
         </section>
 
         <section>
-          <h3>Inverting Data Flow</h3>
+          <h3>
+            <a href="https://gist.github.com/tomatau/86c0f9d0ad844542b94c" target="_blank">
+              Inverting Data Flow
+            </a>
+          </h3>
           <pre><code contenteditable class="js">
 let ClickableList = React.createClass({
   render(){
@@ -668,6 +757,13 @@ let MyClickableList = React.createClass({
               </ul>
             </li>
           </ul>
+
+
+          <aside class="notes">
+            <p>
+              <small>unique key property</small>
+            </p>
+          </aside>
         </section>
 
         <section>
@@ -842,7 +938,11 @@ let MyClickableList = React.createClass({
         </section>
 
         <section>
-          <h3>Property Validation</h3>
+          <h3>
+            <a href="https://gist.github.com/tomatau/feb62909fc77a1fc9a02" target="_blank">
+              Property Validation
+            </a>
+          </h3>
 
           <pre><code contenteditable class="js">
 let ClickableList = React.createClass({
