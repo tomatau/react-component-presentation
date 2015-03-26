@@ -317,7 +317,8 @@
   bower install
   gulp dev
           </code></pre>
-          <p class='fragment roll-in'>5 min break whilst you play around with ES6</p>
+          <p class='fragment roll-in'>5 min break whilst you play around with ES6 <br>
+          <em>Teaser</em> Please <a target="_blank" href="https://developer.echonest.com/account/register">Sign up</a> for an echo nest API key</p>
         </section>
       </section>
       <!-- End: Up and Running -->
@@ -529,7 +530,7 @@
               },
               render(){
                 return (
-                  &lt;span className='hello' onClicK={this.handleClick}&gt;
+                  &lt;span className='hello' onClick={this.handleClick}&gt;
                     Hello, {this.state.who}
                   &lt;/span&gt;
                 )
@@ -543,13 +544,13 @@
             })
           </code></pre>
           <ul>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Synthetic Event object works the same on all browsers
               </span>
             </li>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 events: <code class="inline">onCopy, onKeyDown, onChange, onSubmit, onDblClick, onDragEnd, onTouchStart, onScroll, ...</code>
               </span>
             </li>
@@ -578,13 +579,13 @@
             })
           </code></pre>
           <ul>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Selecting Components in methods
               </span>
             </li>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Can call methods on components here
               </span>
             </li>
@@ -595,8 +596,8 @@
         <section>
           <h3>Sending Data Back to Parent</h3>
           <ul>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Parents hold state, children trigger events
               </span>
               <ul>
@@ -605,13 +606,13 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Use callback functions as props
               </span>
             </li>
-            <li>
-              <span class="fragment roll-in">
+            <li class="fragment roll-in">
+              <span>
                 Binding methods helps a lot here
               </span>
             </li>
@@ -857,15 +858,16 @@ let ClickableList = React.createClass({
     return { inputs: [] }
   },
   render(){
-    <ul>
-      {this.props.inputs.map(input=>
-        &lt;li
-          onClick={this.props.onClickItem.bind(null, input)}
-        &gt;
-        {input.text}
-        &lt;/li&gt;
-      )}
-    </ul>
+    let { inputs, onClickItem } = this.props;
+    return (
+      <ul>
+        {inputs.map((input,i)=>
+          &lt;li key={i} onClick={onClickItem.bind(null, input)}&gt;
+          {input}
+          &lt;/li&gt;
+        )}
+      </ul>
+    )
   }
 });
         </code></pre>
@@ -957,17 +959,44 @@ Counter.defaultProps = { initialCount: 0 };
 
       <section data-state="wish" data-background="#0B3861" data-background-transition="zoom">
         <section class='title' data-background-image='./img/complicated.jpg'>
-          <h2>Minimising Complexity!</h2>
+          <h2>Minimising Complexity</h2>
+        </section>
+
+        <section>
+          <h3>React/Addons</h3>
+          <pre><code contenteditable class="js">
+          import React from 'react/addons';
+          </code></pre>
+          <ul>
+            <li class="fragment roll-in">
+              <span>LinkedStatedMixin - "two way binding" for inputs</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>ClassList is deprecated - classnames npm module</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>PureRenderMixin - powerful, gets complicated with children</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>CSS Transition Group - animation</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Update - Complex state objects</span>
+            </li>
+            <li class="fragment roll-in">
+              <span>Others - Testing, managing children and DOM</span>
+            </li>
+          </ul>
         </section>
 
         <section>
           <h3>I wish someone had told me that</h3>
           <ol>
             <li class="fragment roll-in">
-              <span>Components for everything</span>
+              <span>Smaller Components with less state</span>
             </li>
             <li class="fragment roll-in">
-              <span>Smaller Components with less stats</span>
+              <span>Components for everything</span>
             </li>
             <li class="fragment roll-in">
               <span>Don't mutate props</span>
@@ -979,22 +1008,13 @@ Counter.defaultProps = { initialCount: 0 };
               <span>Components can expose methods with refs</span>
             </li>
             <li class="fragment roll-in">
-              <span>LinkStated mixin is very helpful for inputs</span>
-            </li>
-            <li class="fragment roll-in">
-              <span>ClassList is deprecated for classnames, both good</span>
-            </li>
-            <li class="fragment roll-in">
-              <span>PureRenderMixin gets complicated with children</span>
-            </li>
-            <li class="fragment roll-in">
               <span>Immutable JS helps performance and reasoning</span>
             </li>
             <li class="fragment roll-in">
-              <span>React Router / React Bootstrap / etc...</span>
+              <span>Flux, Crosshairs, Channels, Relay, React Router, React Bootstrap</span>
             </li>
             <li class="fragment roll-in">
-              <span>Flux, Crosshairs, Channels, Relay</span>
+              <span>Higher Order Components</span>
             </li>
             <li class="fragment roll-in">
               <span>Component observe is coming..</span>
@@ -1012,19 +1032,133 @@ Counter.defaultProps = { initialCount: 0 };
 
         <section>
           <h3>Project time!</h3>
-          <h5>TBC...</h5>
-          <a href="https://github.com/tomatau/echo-suggest">echo-suggest</a>
-          <p>Build a music suggestion app with the <a href="http://developer.echonest.com">http://developer.echonest.com</a> API - spec coming soon...</p>
+          <a target="_blank" href="https://github.com/tomatau/echo-suggest">echo-suggest</a>
+          <p>Build a <a target="_blank" href="https://docs.google.com/a/thinkful.com/document/d/1BVC64yGFOZGAZVDGG899miaPma6O-MLiV1lEsLoaq8Q/edit?usp=sharing">music suggestion app</a> with the <a target="_blank" href="http://developer.echonest.com">http://developer.echonest.com</a></p>
         </section>
+
       </section>
       <!-- End: I wish! -->
+      <section>
+        <section class='title' data-background-image="./img/wrapping-up.jpg">
+          <h2>Wrapping Up</h2>
+          <h3 class="fragment roll-in">Next Steps?</h3>
+        </section>
 
+        <section>
+          <h3>Deploying</h3>
+          <ul>
+            <li class="fragment roll-in">
+              <span>Webpack is jam packed with features</span>
+              <ul>
+                <li><span>Uglify JS</span></li>
+                <li><span>Asynchronous file loading</span></li>
+                <li><span>Common Chunks detection</span></li>
+                <li><span>De duplication</span></li>
+                <li><span>App Cache generation</span></li>
+              </ul>
+            </li>
+            <li class="fragment roll-in"><span>Multiple Webpack configs or conditions</span></li>
+          </ul>
+        </section>
 
+        <section>
+          <h3>Libraries</h3>
+          <ul>
+              <li class="fragment roll-in">
+                <span>Immutable JS</span>
+                <ul>
+                  <li><span>Best practice</span></li>
+                  <li><span>Newer versions of React integrate automatically</span></li>
+                  <li><span>High performance</span></li>
+                  <li><span>Many nice features</span></li>
+                </ul>
+              </li>
+              <li class="fragment roll-in">
+                <span>React Bootstrap</span>
+                <ul>
+                  <li><span>Good source code and tests for example components</span></li>
+                  <li><span>Quick prototyping with features</span></li>
+                  <li><span>No need for jQuery</span></li>
+                </ul>
+              </li>
+              <li class="fragment roll-in">
+                <span>React Router</span>
+                <ul>
+                  <li><span>Super popular</span></li>
+                  <li><span>Very well built with many features</span></li>
+                </ul>
+              </li>
+          </ul>
 
+        </section>
 
+        <section>
+          <h3>Frameworks and Patterns</h3>
+          <ul>
+            <li class="fragment roll-in">
+              <span>Flux</span>
+              <ul>
+                <li><span>Just a pattern</span></li>
+                <li><span>Useful when data needs to be shared</span></li>
+                <li><span>Implementations differ</span></li>
+                <li><span>Component.observe ?</span></li>
+              </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>Relay</span>
+              <ul>
+                <li><span>On the horizon</span></li>
+                <li><span>Great with React Native</span></li>
+                <li><span>Parse integration? Back-end libraries?</span></li>
+              </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>Crosshairs and channels</span>
+              <ul>
+                <li><span>Inspired by clojure, om and mori</span></li>
+                <li><span>An improvement on Flux</span></li>
+                <li><span>More simple in ways, more complicated in others</span></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
 
+        <section>
+          <h3>Testing</h3>
 
-
+          <ul>
+            <li class="fragment roll-in">
+              <span>Can be problematic</span>
+                <ul>
+                  <li><span>Mocking in NPM</span></li>
+                  <li><span>Babel/register, etc...</span></li>
+                </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>Jest</span>
+                <ul>
+                  <li><span>Recommended by facebook</span></li>
+                  <li><span>Automatic mocking!.. but very slow</span></li>
+                </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span><a target="_blank" href="https://theintern.github.io/">Intern?</a></span>
+                <ul>
+                  <li><span>Fairly new</span></li>
+                  <li><span>Looks interesting... I haven't tried it</span></li>
+                </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>All the others....</span>
+                <ul>
+                  <li><span><a target="_blank" href="https://github.com/kenwheeler/biff-boilerplate/blob/master/karma.conf.js">Karma</a> - lots of boilerplate</span></li>
+                  <li><span>Mocha - super popular but forgotten?</span></li>
+                  <li><span>E2E - don't need anything new</span></li>
+                </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
 
 
 
