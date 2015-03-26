@@ -36,12 +36,15 @@
   .reveal ol,
   .reveal ul {
     counter-reset: li;  /*Initiate a counter */
-    list-style: none;
+    list-style-type: none;
     font-size: 27px;
     padding: 0;
     margin-bottom: 4em;
     margin: 0;
     /*text-shadow: 0 1px 0 rgba(255,255,255,.5);*/
+  }
+  .reveal ul ul {
+    list-style-type: none;
   }
   .reveal ol ol,
   .reveal ol ul {
@@ -78,7 +81,8 @@
     transition: all .3s ease-out;
   }
   .reveal ul > li > span:before {
-    color: rgb(4, 108, 4);
+    content: " ";
+    color: rgb(4, 108, 4, 0);
     background: rgb(4, 108, 4);
     left: -1em;
     top: 1.6em;
@@ -164,7 +168,7 @@
               <small>My name's Tom, catch me on slack = link to me on Thinkful Students and my Thinkful Email address.</small>
             </p>
             <p>
-              <small>Senior Backbone dev for some time - Build large apps with React and contribute to open source</small>
+              <small>Senior Backbone dev for some time, Contract to fix big problematic Angular Apps - Build large apps with React and contribute to open source</small>
             </p>
             <p>
               <small>Goal for this: _____</small>
@@ -236,10 +240,10 @@
 
           <aside class="notes">
             <p>
-              <small>Declare how it should look - like CSS, less managing</small>
+              <small>Simple - Render and respond to events</small>
             </p>
             <p>
-              <small>Simple - Render and respond to events</small>
+              <small>Declare how it should look - like CSS, less how and more what</small>
             </p>
             <p>
               <small>Plays nice with stack (can run in node)</small>
@@ -334,20 +338,6 @@
           <h4 class='fragment roll-in'>
             A quick <a target="_blank" href="https://github.com/tomatau/react-webpack-setup/blob/master/gulpfile.js">gulp & webpack walkthrough</a>
           </h4>
-        </section>
-        <section>
-          <h3>Install NPM</h3>
-          <p>You can install <a target="_blank" href="https://gist.github.com/isaacs/579814">without sudo</a> or by using <a target="_blank" href="https://github.com/creationix/nvm">a version manager</a></p>
-          <pre><code contenteditable class="shell">
-  npm i gulp bower -g
-  ...
-  git clone git@github.com:tomatau/react-webpack-setup.git && cd react-webpack-setup
-  npm install
-  bower install
-  gulp dev
-          </code></pre>
-          <p class='fragment roll-in'>5 min break whilst you play around with ES6 <br>
-          <em>Teaser:</em> Please <a target="_blank" href="https://developer.echonest.com/account/register">Sign up</a> for an echo nest API key</p>
 
 
 
@@ -365,6 +355,20 @@
               <small>Webpack can work stand alone -- get's a bit grunty and complex with plugins and alias'</small>
             </p>
           </aside>
+        </section>
+        <section>
+          <h3>Install NPM</h3>
+          <p>You can install <a target="_blank" href="https://gist.github.com/isaacs/579814">without sudo</a> or by using <a target="_blank" href="https://github.com/creationix/nvm">a version manager</a></p>
+          <pre><code contenteditable class="shell">
+  npm i gulp bower -g
+  ...
+  git clone git@github.com:tomatau/react-webpack-setup.git && cd react-webpack-setup
+  npm install
+  bower install
+  gulp dev
+          </code></pre>
+          <p class='fragment roll-in'>5 min break whilst you play around with ES6 <br>
+          <em>Teaser:</em> Please <a target="_blank" href="https://developer.echonest.com/account/register">Sign up</a> for an echo nest API key</p>
 
 
         </section>
@@ -1108,19 +1112,19 @@ Counter.defaultProps = { initialCount: 0 };
               <span>Components can expose methods with refs</span>
             </li>
             <li class="fragment roll-in">
-              <span>Immutable JS helps performance and reasoning</span>
+              <span>
+                <a href="http://browserifysearch.org/" target='_blank'>
+                Browserify Search</a> For NPM modules
+              </span>
             </li>
             <li class="fragment roll-in">
-              <span>Flux, Crosshairs, Channels, Relay, React Router, React Bootstrap</span>
+              <span>Immutable JS, Flux, Crosshairs, Channels, Relay, React Router, React Bootstrap</span>
             </li>
             <li class="fragment roll-in">
               <span>Higher Order Components</span>
             </li>
             <li class="fragment roll-in">
-              <span>Component observe is coming..</span>
-            </li>
-            <li class="fragment roll-in">
-              <span>Lot's keeps changing still</span>
+              <span>Component observe is coming, etc...</span>
             </li>
           </ol>
         </section>
@@ -1157,37 +1161,40 @@ Counter.defaultProps = { initialCount: 0 };
                 <li><span>App Cache generation</span></li>
               </ul>
             </li>
-            <li class="fragment roll-in"><span>Multiple Webpack configs or conditions</span></li>
+            <li class="fragment roll-in"><span>Multiple Webpack configs or monkey patching</span></li>
           </ul>
         </section>
 
         <section>
           <h3>Libraries</h3>
           <ul>
-              <li class="fragment roll-in">
-                <span>Immutable JS</span>
-                <ul>
-                  <li><span>Best practice</span></li>
-                  <li><span>Newer versions of React integrate automatically</span></li>
-                  <li><span>High performance</span></li>
-                  <li><span>Many nice features</span></li>
-                </ul>
-              </li>
-              <li class="fragment roll-in">
-                <span>React Bootstrap</span>
-                <ul>
-                  <li><span>Good source code and tests for example components</span></li>
-                  <li><span>Quick prototyping with features</span></li>
-                  <li><span>No need for jQuery</span></li>
-                </ul>
-              </li>
-              <li class="fragment roll-in">
-                <span>React Router</span>
-                <ul>
-                  <li><span>Super popular</span></li>
-                  <li><span>Very well built with many features</span></li>
-                </ul>
-              </li>
+            <li class="fragment roll-in">
+              <span>Immutable JS</span>
+              <ul>
+                <li><span>Best practice</span></li>
+                <li><span>Newest version of React integrates automagically</span></li>
+                <li><span>High performance</span></li>
+                <li><span>Many nice features</span></li>
+              </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>React Bootstrap</span>
+              <ul>
+                <li><span>Good source code and tests for example components</span></li>
+                <li><span>No need for jQuery</span></li>
+              </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>React Router</span>
+              <ul>
+                <li><span>Super popular</span></li>
+                <li><span>Very well built with many features</span></li>
+              </ul>
+            </li>
+            <li class='fragment roll-in'>
+              <span><a href="http://browserifysearch.org/" target='_blank'>
+                Browserify Search</a></span>
+            </li>
           </ul>
 
         </section>
@@ -1208,7 +1215,6 @@ Counter.defaultProps = { initialCount: 0 };
               <span>Relay</span>
               <ul>
                 <li><span>On the horizon</span></li>
-                <li><span>Great with React Native</span></li>
                 <li><span>Parse integration? Back-end libraries?</span></li>
               </ul>
             </li>
@@ -1217,8 +1223,10 @@ Counter.defaultProps = { initialCount: 0 };
               <ul>
                 <li><span>Inspired by clojure, om and mori</span></li>
                 <li><span>An improvement on Flux</span></li>
-                <li><span>More simple in ways, more complicated in others</span></li>
               </ul>
+            </li>
+            <li class="fragment roll-in">
+              <span>React Native</span>
             </li>
           </ul>
         </section>
@@ -1257,6 +1265,10 @@ Counter.defaultProps = { initialCount: 0 };
                 </ul>
             </li>
           </ul>
+        </section>
+
+        <section class="title" data-background-image="./img/components.jpg">
+          <h2>Go forth and compose</h2>
         </section>
       </section>
 
