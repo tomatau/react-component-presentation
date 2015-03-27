@@ -268,18 +268,27 @@
         <section class='title' data-background-image='./img/balance.jpg'>
           <h2>JSX</h2>
           <h3 class='fragment roll-in'>Sugar for JavaScript</h3>
+          <p class='fragment roll-in' style='color: blanchedalmond;'>React JavaScript code</p>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
-            React.DOM.input({ disabled: isDisabled })
-            React.createElement(TodoList, {
-              onClick: handleClick
-            });
+  React.createElement("div", null,
+    React.createElement("h3", null, "TODO"),
+    React.createElement(TodoList, {items: this.state.items}),
+    React.createElement("form", {onSubmit: this.handleSubmit},
+      React.createElement("input", {onChange: this.onChange, value: this.state.text}),
+      React.createElement("button", null, 'Add #' + (this.state.items.length + 1))
+    )
+  )
           </code></pre>
-          <span class='fragment roll-in' style='color: rgb(4, 108, 4);'>Normal JS, or...</span>
+          <span class='fragment roll-in' style='color: blanchedalmond;'>Equivalent JSX...</span>
           <pre class='fragment roll-in'><code contenteditable class="jsx">
-            &lt;input disabled={isDisabled} /&gt;
-            &lt;TodoList
-              onClick={handleClick}
-            /&gt;
+  &lt;div&gt;
+    &lt;h3&gt;TODO&lt;/h3&gt;
+    &lt;TodoList items={this.state.items} /&gt;
+    &lt;form onSubmit={this.handleSubmit}&gt;
+      &lt;input onChange={this.onChange} value={this.state.text} /&gt;
+      &lt;button&gt;{'Add #' + (this.state.items.length + 1)}&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
           </code></pre>
 
 
